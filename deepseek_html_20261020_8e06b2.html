@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cuéntanos sobre tu proyecto</title>
+<meta name="theme-color" content="#f7f6f2" id="themeColorMeta">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f7f6f2;
+  --bg-grad:
+    radial-gradient(900px 500px at 15% -10%, #dcfce7 0%, transparent 55%),
+    radial-gradient(700px 420px at 90% 0%, #e0f2fe 0%, transparent 50%);
+  --card: #ffffff;
+  --card2: #fbfaf7;
+  --text: #0f172a;
+  --muted: #64748b;
+  --muted2: #94a3b8;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --accent: #059669;
+  --accent-hover: #047857;
+  --accent-2: #0284c7;
+  --accent-soft: rgba(5,150,105,.08);
+  --accent-soft-2: rgba(5,150,105,.16);
+  --danger: #dc2626;
+  --danger-soft: rgba(220,38,38,.08);
+  --shadow: 0 4px 24px -8px rgba(15,23,42,.10);
+  --shadow-lg: 0 20px 50px -20px rgba(15,23,42,.18);
+  --chip-bg: #ffffff;
+  --chip-border: #e2e8f0;
+  --progress-track: rgba(15,23,42,.06);
+}
+
+[data-theme="dark"] {
+  --bg: #0b1220;
+  --bg-grad:
+    radial-gradient(1200px 600px at 20% -10%, #16305a 0%, transparent 60%),
+    radial-gradient(800px 400px at 90% 0%, #1e293b 0%, transparent 50%);
+  --card: #131c2e;
+  --card2: #1a2438;
+  --text: #e8eef8;
+  --muted: #94a3b8;
+  --muted2: #64748b;
+  --border: #26324a;
+  --border-strong: #334155;
+  --accent: #2ee6a8;
+  --accent-hover: #34d399;
+  --accent-2: #38bdf8;
+  --accent-soft: rgba(46,230,168,.10);
+  --accent-soft-2: rgba(46,230,168,.18);
+  --danger: #f87171;
+  --danger-soft: rgba(248,113,113,.10);
+  --shadow: 0 4px 24px -8px rgba(0,0,0,.6);
+  --shadow-lg: 0 20px 50px -20px rgba(0,0,0,.8);
+  --chip-bg: #0f1929;
+  --chip-border: #26324a;
+  --progress-track: rgba(255,255,255,.06);
+}
+
+html, body { min-height: 100%; }
+
+body {
+  background: var(--bg-grad), var(--bg);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  padding: 0 0 90px;
+  transition: background-color .3s ease, color .3s ease;
+}
+
+/* ---------- TOP BAR ---------- */
+.progress-bar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 3px; background: var(--progress-track); z-index: 60;
+}
+#progressFill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width .35s cubic-bezier(.4,0,.2,1);
+  border-radius: 0 3px 3px 0;
+}
+
+.top {
+  max-width: 720px; margin: 0 auto;
+  padding: 20px 20px 6px;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px;
+}
+.brand {
+  display: flex; align-items: center; gap: 9px;
+  font-weight: 700; font-size: 13px; letter-spacing: .4px;
+  color: var(--text);
+}
+.dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+.counter {
+  font-size: 12.5px; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.theme-toggle {
+  width: 38px; height: 38px;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: all .2s ease;
+  box-shadow: var(--shadow);
+  flex-shrink: 0;
+}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.theme-toggle svg { width: 17px; height: 17px; }
+[data-theme="light"] .icon-moon,
+[data-theme="dark"] .icon-sun { display: none; }
+
+/* ---------- MAIN ---------- */
+main {
+  max-width: 720px; margin: 0 auto;
+  padding: 8px 20px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 32px 30px;
+  box-shadow: var(--shadow);
+  animation: fadeUp .35s cubic-bezier(.4,0,.2,1);
+  transition: background-color .3s ease, border-color .3s ease;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+  font-size: 11.5px; letter-spacing: 1.4px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 10px; font-weight: 700;
+  display: flex; align-items: center; gap: 8px;
+}
+.eyebrow-emoji { font-size: 15px; }
+
+.question {
+  font-size: 23px; line-height: 1.28; font-weight: 700;
+  margin-bottom: 8px; letter-spacing: -.2px;
+}
+.help {
+  color: var(--muted); font-size: 14.5px; margin-bottom: 4px;
+}
+.optional-badge {
+  display: inline-block;
+  font-size: 10.5px; font-weight: 600;
+  color: var(--muted2);
+  background: var(--chip-bg);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: 8px;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.field { margin: 22px 0 6px; }
+
+.inp {
+  width: 100%;
+  background: var(--chip-bg);
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  border-radius: 14px;
+  padding: 15px 18px;
+  font-size: 16px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color .18s, box-shadow .18s, background-color .3s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.inp::placeholder { color: var(--muted2); }
+.inp:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+textarea.inp { resize: vertical; min-height: 96px; line-height: 1.5; }
+select.inp {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 18px;
+  padding-right: 44px;
+}
+
+.options { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.option {
+  background: var(--chip-bg);
+  border: 1.5px solid var(--chip-border);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 11px 18px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all .15s ease;
+  font-family: inherit;
+  font-weight: 500;
+}
+.option:hover { border-color: var(--accent); color: var(--accent); }
+.option.selected {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.error {
+  color: var(--danger); font-size: 14px;
+  min-height: 22px; margin-top: 10px; font-weight: 500;
+}
+.error:empty { min-height: 0; margin-top: 0; }
+
+.nav {
+  display: flex; justify-content: space-between; gap: 12px;
+  margin-top: 26px; align-items: center;
+}
+
+.btn {
+  border: 1.5px solid var(--border);
+  background: var(--card2);
+  color: var(--text);
+  border-radius: 14px;
+  padding: 13px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all .15s ease;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px;
+}
+.btn:hover:not(:disabled) { border-color: var(--border-strong); }
+.btn:active:not(:disabled) { transform: scale(.98); }
+.btn:disabled { opacity: .35; cursor: not-allowed; }
+.btn.primary {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+  font-weight: 700;
+  box-shadow: 0 6px 20px -6px var(--accent);
+}
+[data-theme="dark"] .btn.primary { color: #052018; }
+.btn.primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+.btn.ghost { background: transparent; border-color: transparent; color: var(--muted); }
+.btn.ghost:hover { color: var(--text); background: var(--accent-soft); }
+.btn.danger { color: var(--danger); border-color: var(--danger-soft); background: transparent; }
+.btn.danger:hover { background: var(--danger-soft); }
+.btn.whatsapp {
+  background: #25D366;
+  border-color: #25D366;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 6px 20px -6px #25D366;
+}
+.btn.whatsapp:hover { filter: brightness(1.06); }
+.btn svg { width: 17px; height: 17px; }
+
+/* ---------- WELCOME ---------- */
+.welcome-card {
+  text-align: left;
+}
+.welcome-emoji {
+  font-size: 52px; line-height: 1;
+  margin-bottom: 16px; display: block;
+  animation: wave 1.6s ease-in-out infinite;
+  transform-origin: 70% 80%;
+}
+@keyframes wave {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  10%, 30% { transform: rotate(14deg); }
+  20%, 40% { transform: rotate(-6deg); }
+}
+.welcome-title {
+  font-size: 32px; font-weight: 800; letter-spacing: -.7px;
+  line-height: 1.15; margin-bottom: 14px;
+}
+.welcome-text {
+  font-size: 16.5px; color: var(--muted); line-height: 1.6;
+  margin-bottom: 8px;
+}
+.welcome-list {
+  list-style: none; margin: 20px 0 4px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.welcome-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 15px; color: var(--text);
+}
+.welcome-list li::before {
+  content: ''; width: 18px; height: 18px;
+  background: var(--accent-soft);
+  border-radius: 6px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23059669' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-size: 11px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+[data-theme="dark"] .welcome-list li::before {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232ee6a8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+}
+
+/* ---------- SERVICE CARDS ---------- */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 22px 0 4px;
+}
+.service-card {
+  background: var(--card2);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 18px 18px 18px 16px;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 14px;
+  transition: all .18s ease;
+  text-align: left;
+  font-family: inherit;
+  color: var(--text);
+  width: 100%;
+  position: relative;
+}
+.service-card:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.service-card.selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 3px var(--accent-soft-2);
+}
+.service-card .s-icon {
+  font-size: 26px; line-height: 1;
+  width: 48px; height: 48px;
+  border-radius: 13px;
+  background: var(--card);
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+}
+.service-card.selected .s-icon {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.s-body { flex: 1; min-width: 0; }
+.s-name {
+  font-size: 15.5px; font-weight: 700; margin-bottom: 2px;
+  letter-spacing: -.15px;
+}
+.s-desc {
+  font-size: 13px; color: var(--muted); line-height: 1.4;
+}
+.check {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-strong);
+  background: var(--card);
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: all .15s ease;
+}
+.service-card.selected .check {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.check svg {
+  width: 12px; height: 12px;
+  stroke: #fff; stroke-width: 3;
+  fill: none; stroke-linecap: round; stroke-linejoin: round;
+  opacity: 0;
+  transition: opacity .15s ease;
+}
+[data-theme="dark"] .check svg { stroke: #052018; }
+.service-card.selected .check svg { opacity: 1; }
+
+/* ---------- SUMMARY ---------- */
+.thanks-title {
+  font-size: 26px; font-weight: 800; letter-spacing: -.5px;
+  line-height: 1.2; margin-bottom: 10px;
+}
+.thanks-sub {
+  font-size: 15.5px; color: var(--muted); margin-bottom: 4px;
+}
+.output {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background: var(--card2);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  max-height: 360px;
+  overflow-y: auto;
+  margin: 18px 0;
+  color: var(--text);
+}
+.actions {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-bottom: 8px;
+}
+.actions .btn { flex: 1 1 140px; }
+.actions .btn.whatsapp { flex: 2 1 200px; }
+
+@media (max-width: 560px) {
+  .card { padding: 24px 20px; border-radius: 18px; }
+  .question { font-size: 20px; }
+  .welcome-title { font-size: 27px; }
+  .thanks-title { font-size: 22px; }
+  .welcome-emoji { font-size: 44px; }
+  main { padding: 4px 14px; }
+  .top { padding: 16px 14px 4px; }
+  .nav { flex-direction: column-reverse; }
+  .nav .btn { width: 100%; }
+  .actions { flex-direction: column; }
+  .actions .btn { flex: 1 1 auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div id="progressFill"></div></div>
+
+<header class="top">
+  <div class="brand"><span class="dot"></span><span>CUÉNTANOS</span></div>
+  <div class="counter" id="counter"></div>
+  <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+    </svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  </button>
+</header>
+
+<main id="stage"></main>
+
+<script>
+/* ==================================================================
+   CONFIG
+   ================================================================== */
+
+const WHATSAPP_NUMBER = '573025345179';
+const STORAGE_KEY = 'cuentanos_v2';
+
+/* ==================================================================
+   SERVICIOS + ÁRBOLES DE DECISIÓN
+   Cada pregunta puede tener showIf(answers) → usa prefijo "servicio__id"
+   ================================================================== */
+
+const CONTACT = {
+  id: 'contact',
+  name: 'Cuéntanos de ti',
+  icon: '👋',
+  questions: [
+    { id:'name', label:'Tu nombre', question:'¿Cómo te llamas?',
+      type:'text', required:true, placeholder:'Nombre y apellido', autofocus:true },
+    { id:'company', label:'Empresa o proyecto', question:'¿De qué empresa o proyecto eres?',
+      type:'text', placeholder:'Si aplica' },
+    { id:'contact_way', label:'Contacto', question:'¿Cuál es tu WhatsApp o correo?',
+      help:'Para responderte con una propuesta personalizada.',
+      type:'text', required:true, placeholder:'Número o correo' },
+    { id:'source', label:'Cómo nos encontraste', question:'¿Cómo llegaste hasta nosotros?',
+      type:'radio', options:['Instagram','Google','Recomendación','LinkedIn','Ya los conocía','Otro'] }
+  ]
+};
+
+const SERVICES = {
+  brand: {
+    id: 'brand',
+    name: 'Diseño de marca',
+    icon: '🎨',
+    description: 'Logo, identidad visual y manual de marca',
+    questions: [
+      { id:'type', label:'Tipo de proyecto',
+        question:'¿Tu marca es nueva o quieres renovar la que ya tienes?',
+        type:'radio', required:true,
+        options:['Marca nueva desde cero','Rediseño de una marca existente','Solo ajustes puntuales','No estoy seguro'] },
+      { id:'redesign_why', label:'Qué no te gusta',
+        question:'¿Qué no te gusta de tu marca actual?',
+        type:'textarea',
+        placeholder:'Colores, tipografía, logo, la forma en que se percibe...',
+        showIf: a => a.brand__type === 'Rediseño de una marca existente' },
+      { id:'business', label:'Tipo de negocio',
+        question:'¿Qué tipo de negocio es?',
+        type:'text', required:true,
+        placeholder:'Ej: restaurante, fintech, inmobiliaria...' },
+      { id:'audience', label:'Público objetivo',
+        question:'¿A quién quieres llegar con esta marca?',
+        type:'textarea',
+        placeholder:'Edad, estilo de vida, ubicación, intereses...' },
+      { id:'personality', label:'Personalidad de la marca',
+        question:'Si tu marca fuera una persona, ¿cómo sería?',
+        help:'Elige todas las que te representen.',
+        type:'checkbox',
+        options:['Cercana y cálida','Premium y elegante','Moderna y disruptiva','Seria y confiable','Divertida y joven','Minimalista','Artesanal','Tecnológica'] },
+      { id:'references', label:'Referencias visuales',
+        question:'¿Hay marcas que te gusten visualmente?',
+        help:'Nombres, links o descripciones. No es obligatorio.',
+        type:'textarea' },
+      { id:'deliverables', label:'Aplicaciones que necesitas',
+        question:'¿Qué piezas necesitas?',
+        help:'Marca todo lo que aplique.',
+        type:'checkbox',
+        options:['Logo principal','Variantes del logo','Paleta de colores','Tipografía','Papelería','Redes sociales','Empaques','Uniformes','Señalización','Manual de marca completo'] },
+      { id:'deadline', label:'Fecha objetivo',
+        question:'¿Para cuándo lo necesitas?',
+        type:'select',
+        options:['Urgente (menos de 2 semanas)','1 mes','2 - 3 meses','Sin prisa'] },
+      { id:'budget', label:'Presupuesto',
+        question:'¿Tienes un presupuesto estimado?',
+        type:'select',
+        options:['Menos de $1M COP','$1M – $3M COP','$3M – $8M COP','$8M – $15M COP','Más de $15M COP','Prefiero hablarlo'] }
+    ]
+  },
+
+  video: {
+    id: 'video',
+    name: 'Video institucional',
+    icon: '🎬',
+    description: 'Videos con IA, presentaciones y pitch',
+    questions: [
+      { id:'goal', label:'Objetivo del video',
+        question:'¿Qué quieres lograr con el video?',
+        type:'radio', required:true,
+        options:['Presentar un producto o servicio','Vender / captar clientes','Levantar inversión','Posicionar la marca','Educar al mercado','Presentar en un evento'] },
+      { id:'audience', label:'Audiencia',
+        question:'¿A quién le habla el video?',
+        type:'radio', required:true,
+        options:['Inversionistas','Empresas o clientes B2B','Consumidor final','Gobierno / entidades','Público mixto'] },
+      { id:'ideal_remember', label:'Idea a recordar',
+        question:'Si el espectador solo recuerda una cosa, ¿qué debería ser?',
+        type:'textarea', required:true,
+        placeholder:'Una sola idea clara y potente.' },
+      { id:'pitch', label:'Pitch en 20 segundos',
+        question:'Cuéntanos tu proyecto en 20 segundos, como a un inversionista.',
+        type:'textarea',
+        placeholder:'Qué haces, para quién y por qué es mejor que las alternativas.' },
+      { id:'duration', label:'Duración',
+        question:'¿Qué duración prefieres?',
+        type:'radio',
+        options:['30 segundos','60 segundos','90 segundos','2 – 3 minutos','Más de 3 minutos','Confío en tu criterio'] },
+      { id:'format', label:'Formatos',
+        question:'¿Dónde se va a ver el video?',
+        help:'Puedes marcar varias opciones.',
+        type:'checkbox',
+        options:['Web','LinkedIn','Instagram / TikTok','Pitch de inversión','Feria / evento','Sala de ventas'] },
+      { id:'tone', label:'Tono',
+        question:'¿Qué tono te gustaría?',
+        type:'radio',
+        options:['Técnico y sobrio','Corporativo','Cercano y moderno','Innovador y tecnológico','Emocional y humano'] },
+      { id:'presenter', label:'Presentador',
+        question:'¿Cómo imaginas al presentador del video?',
+        help:'Si no tienes preferencia, tranquilo, nosotros lo proponemos.',
+        type:'radio',
+        options:['Mujer 30–45 años','Hombre 30–45 años','Dúo hombre–mujer','Persona real (no IA)','No tengo preferencia'] },
+      { id:'materials', label:'Material existente',
+        question:'¿Tienes material audiovisual que podamos usar?',
+        type:'checkbox',
+        options:['Fotos','Renders','Planos','Videos','Logos y manual de marca','Nada aún'] },
+      { id:'brand_manual', label:'Manual de marca',
+        question:'¿Tienes manual de marca (colores, logo, tipografía)?',
+        type:'radio',
+        options:['Sí','No','Está en proceso'] },
+      { id:'references', label:'Referencias',
+        question:'¿Hay videos que te gusten como referencia?',
+        help:'Links o descripciones. Opcional.',
+        type:'textarea' },
+      { id:'deadline', label:'Fecha objetivo',
+        question:'¿Para cuándo lo necesitas?',
+        type:'select',
+        options:['Urgente (menos de 2 semanas)','1 mes','2 - 3 meses','Sin prisa'] },
+      { id:'budget', label:'Presupuesto',
+        question:'¿Tienes un presupuesto estimado?',
+        type:'select',
+        options:['Menos de $2M COP','$2M – $5M COP','$5M – $10M COP','$10M – $20M COP','Más de $20M COP','Prefiero hablarlo'] }
+    ]
+  },
+
+  social: {
+    id: 'social',
+    name: 'Gestión de redes',
+    icon: '📱',
+    description: 'Contenido, comunidad y estrategia',
+    questions: [
+      { id:'networks', label:'Redes activas',
+        question:'¿En qué redes quieres que trabajemos?',
+        type:'checkbox', required:true,
+        options:['Instagram','TikTok','Facebook','LinkedIn','YouTube','X (Twitter)','Pinterest'] },
+      { id:'goal', label:'Objetivo',
+        question:'¿Cuál es el objetivo principal en redes?',
+        type:'radio', required:true,
+        options:['Crecer y ganar seguidores','Generar ventas','Captar leads','Construir comunidad','Posicionar la marca','Atender clientes'] },
+      { id:'current_status', label:'Situación actual',
+        question:'¿Quién maneja las redes hoy?',
+        type:'radio',
+        options:['Nosotros mismos','Un freelance','Otra agencia','Nadie, están inactivas'] },
+      { id:'frequency', label:'Frecuencia',
+        question:'¿Con qué frecuencia publican hoy?',
+        type:'select',
+        options:['Todos los días','3 a 4 veces por semana','1 a 2 veces por semana','Muy poco','No publicamos'] },
+      { id:'tone', label:'Voz y tono',
+        question:'¿Cómo quieres sonar en redes?',
+        type:'radio',
+        options:['Profesional y serio','Cercano y amigable','Divertido y descomplicado','Inspirador y aspiracional','Técnico y educativo'] },
+      { id:'content_type', label:'Tipo de contenido',
+        question:'¿Qué tipo de contenido te interesa?',
+        help:'Marca todo lo que aplique.',
+        type:'checkbox',
+        options:['Fotos de producto','Reels / videos cortos','Carruseles educativos','Testimonios','Behind the scenes','Lives','Memes / humor de marca','Contenido UGC'] },
+      { id:'production', label:'Producción de contenido',
+        question:'¿Necesitas que produzcamos las fotos y videos?',
+        type:'radio',
+        options:['Sí, producción completa','Solo edición','Nosotros producimos, ustedes editan','No, tenemos material'] },
+      { id:'deadline', label:'Cuándo empezamos',
+        question:'¿Cuándo te gustaría arrancar?',
+        type:'select',
+        options:['Esta semana','En 2 semanas','En 1 mes','Aún lo estoy pensando'] },
+      { id:'budget', label:'Presupuesto mensual',
+        question:'¿Qué presupuesto mensual tienes en mente?',
+        type:'select',
+        options:['Menos de $1M COP','$1M – $2M COP','$2M – $4M COP','$4M – $8M COP','Más de $8M COP','Prefiero hablarlo'] }
+    ]
+  },
+
+  web: {
+    id: 'web',
+    name: 'Página web',
+    icon: '🌐',
+    description: 'Sitios, tiendas y landings',
+    questions: [
+      { id:'type', label:'Tipo de sitio',
+        question:'¿Qué tipo de página necesitas?',
+        type:'radio', required:true,
+        options:['Landing page (una sola página)','Sitio informativo / corporativo','Tienda en línea (e-commerce)','Blog / revista digital','Catálogo de productos','Rediseño de un sitio existente'] },
+      { id:'redesign_why', label:'Qué mejorar',
+        question:'¿Qué te gustaría mejorar del sitio actual?',
+        type:'textarea',
+        showIf: a => a.web__type === 'Rediseño de un sitio existente' },
+      { id:'goal', label:'Objetivo',
+        question:'¿Cuál es el objetivo principal del sitio?',
+        type:'radio', required:true,
+        options:['Generar leads','Vender productos','Mostrar la empresa','Agendar citas','Publicar contenido','Portafolio'] },
+      { id:'pages', label:'Secciones',
+        question:'¿Qué secciones debe tener?',
+        help:'Marca las que necesites.',
+        type:'checkbox',
+        options:['Inicio','Nosotros','Servicios','Productos','Blog','Contacto','Preguntas frecuentes','Testimonios','Portafolio','Precios'] },
+      { id:'ecommerce', label:'E-commerce',
+        question:'¿Necesitas carrito y pagos en línea?',
+        type:'radio',
+        options:['Sí, con pasarela de pago','Sí, pero sin pagos online','No, es informativo'],
+        showIf: a => a.web__type === 'Tienda en línea (e-commerce)' || a.web__type === 'Catálogo de productos' },
+      { id:'payments', label:'Pasarelas de pago',
+        question:'¿Qué pasarelas necesitas?',
+        type:'checkbox',
+        options:['Wompi','MercadoPago','PayU','Stripe','PayPal','No sé, recomiéndenme'],
+        showIf: a => a.web__ecommerce === 'Sí, con pasarela de pago' },
+      { id:'content', label:'Contenido',
+        question:'¿Tienes textos, fotos y logos listos?',
+        type:'radio',
+        options:['Sí, todo listo','Algunas cosas','No, necesitamos que nos ayuden','No tengo nada'] },
+      { id:'domain', label:'Dominio y hosting',
+        question:'¿Ya tienes dominio y hosting?',
+        type:'radio',
+        options:['Sí, los dos','Solo dominio','Solo hosting','No tengo ninguno','No sé qué son'] },
+      { id:'references', label:'Referencias',
+        question:'¿Hay sitios que te gusten como referencia?',
+        help:'Links o descripciones. Opcional.',
+        type:'textarea' },
+      { id:'features', label:'Funcionalidades extra',
+        question:'¿Necesitas alguna de estas funcionalidades?',
+        type:'checkbox',
+        options:['Multi-idioma','Chat en vivo','Blog con CMS','Área privada de clientes','Integración con CRM','Reservas / citas','Formularios avanzados','SEO técnico','Analytics avanzado'] },
+      { id:'deadline', label:'Fecha objetivo',
+        question:'¿Para cuándo lo necesitas?',
+        type:'select',
+        options:['Urgente (menos de 2 semanas)','1 mes','2 - 3 meses','Sin prisa'] },
+      { id:'budget', label:'Presupuesto',
+        question:'¿Tienes un presupuesto estimado?',
+        type:'select',
+        options:['Menos de $2M COP','$2M – $5M COP','$5M – $10M COP','$10M – $20M COP','Más de $20M COP','Prefiero hablarlo'] }
+    ]
+  },
+
+  ai: {
+    id: 'ai',
+    name: 'Asistentes de IA',
+    icon: '🤖',
+    description: 'Chatbots, automatización y agentes',
+    questions: [
+      { id:'use_case', label:'Para qué lo necesitas',
+        question:'¿Qué tarea quieres automatizar o mejorar con IA?',
+        type:'radio', required:true,
+        options:['Atención al cliente','Ventas y calificación de leads','Soporte técnico','Reservas y agendamiento','Generación de contenido','Análisis de datos','Automatización de procesos internos','Aún no lo tengo claro'] },
+      { id:'channel', label:'Canal',
+        question:'¿Por dónde llega tu cliente?',
+        type:'checkbox',
+        options:['WhatsApp','Sitio web','Instagram','Facebook Messenger','Telegram','Llamadas telefónicas','Email'] },
+      { id:'volume', label:'Volumen',
+        question:'¿Cuántas conversaciones o solicitudes recibes al mes?',
+        type:'select',
+        options:['Menos de 100','100 – 500','500 – 2.000','2.000 – 10.000','Más de 10.000','No lo sé'] },
+      { id:'must_answer', label:'Qué debe responder',
+        question:'¿Qué preguntas o tareas debe resolver el asistente?',
+        type:'textarea', required:true,
+        placeholder:'Precios, horarios, disponibilidad, estado de pedidos, agendar...' },
+      { id:'knowledge', label:'Base de conocimiento',
+        question:'¿Tienes documentación de tu negocio para entrenarlo?',
+        type:'radio',
+        options:['Sí, todo documentado','Tengo algo pero disperso','No, hay que construirlo','No sé qué necesitaría'] },
+      { id:'integrations', label:'Integraciones',
+        question:'¿Con qué sistemas debe conectarse?',
+        type:'checkbox',
+        options:['CRM (HubSpot, Salesforce...)','Google Calendar','Pasarela de pagos','ERP','Base de datos propia','Ninguna por ahora','No sé'] },
+      { id:'human_handoff', label:'Escalamiento a humano',
+        question:'¿Cuándo debe pasar la conversación a una persona?',
+        type:'radio',
+        options:['Cuando el cliente lo pida','En temas sensibles','Siempre que detecte frustración','Nunca, todo automático','No lo he pensado'] },
+      { id:'language', label:'Idioma',
+        question:'¿En qué idioma debe atender?',
+        type:'radio',
+        options:['Español','Inglés','Bilingüe español / inglés','Otro'] },
+      { id:'deadline', label:'Fecha objetivo',
+        question:'¿Para cuándo lo necesitas?',
+        type:'select',
+        options:['Urgente (menos de 2 semanas)','1 mes','2 - 3 meses','Sin prisa'] },
+      { id:'budget', label:'Presupuesto',
+        question:'¿Tienes un presupuesto estimado?',
+        type:'select',
+        options:['Menos de $2M COP','$2M – $5M COP','$5M – $15M COP','$15M – $30M COP','Más de $30M COP','Prefiero hablarlo'] }
+    ]
+  }
+};
+
+/* Orden del menú inicial */
+const SERVICE_ORDER = ['brand','video','social','web','ai'];
+
+/* ==================================================================
+   ESTADO
+   ================================================================== */
+
+const state = {
+  phase: 'welcome',      // welcome | services | questions | summary
+  theme: 'light',
+  services: [],
+  answers: {},
+  currentQ: 0,
+  questionList: []
+};
+
+const stage = document.getElementById('stage');
+const counterEl = document.getElementById('counter');
+const progressFill = document.getElementById('progressFill');
+const themeToggle = document.getElementById('themeToggle');
+const themeColorMeta = document.getElementById('themeColorMeta');
+
+/* ==================================================================
+   PERSISTENCIA
+   ================================================================== */
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      phase: state.phase,
+      theme: state.theme,
+      services: state.services,
+      answers: state.answers,
+      currentQ: state.currentQ
+    }));
+  } catch (e) {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const d = JSON.parse(raw);
+    if (d.theme) state.theme = d.theme;
+    if (Array.isArray(d.services)) state.services = d.services;
+    if (d.answers) Object.assign(state.answers, d.answers);
+    if (typeof d.currentQ === 'number') state.currentQ = d.currentQ;
+    if (d.phase) state.phase = d.phase;
+  } catch (e) {}
+}
+
+/* ==================================================================
+   TEMA
+   ================================================================== */
+
+function applyTheme() {
+  document.documentElement.setAttribute('data-theme', state.theme);
+  themeColorMeta.setAttribute('content', state.theme === 'dark' ? '#0b1220' : '#f7f6f2');
+}
+
+function toggleTheme() {
+  state.theme = state.theme === 'light' ? 'dark' : 'light';
+  applyTheme();
+  saveState();
+}
+
+/* ==================================================================
+   UTILS
+   ================================================================== */
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c =>
+    ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+}
+
+function isEmpty(v) {
+  return v === undefined || v === null || v === '' || (Array.isArray(v) && v.length === 0);
+}
+
+function isVisible(q) {
+  if (!q.showIf) return true;
+  return q.showIf(state.answers);
+}
+
+/* ==================================================================
+   CONSTRUCCIÓN DE LA LISTA DE PREGUNTAS
+   ================================================================== */
+
+function buildQuestionList() {
+  const list = [];
+
+  // 1) Contacto
+  CONTACT.questions.forEach(q => {
+    list.push({
+      ...q,
+      id: `contact__${q.id}`,
+      section: CONTACT.name,
+      _icon: CONTACT.icon
+    });
+  });
+
+  // 2) Por cada servicio seleccionado
+  SERVICE_ORDER.forEach(sId => {
+    if (!state.services.includes(sId)) return;
+    const svc = SERVICES[sId];
+    svc.questions.forEach(q => {
+      list.push({
+        ...q,
+        id: `${sId}__${q.id}`,
+        section: svc.name,
+        _icon: svc.icon
+      });
+    });
+  });
+
+  return list;
+}
+
+function visibleQuestions() {
+  return state.questionList.filter(isVisible);
+}
+
+/* ==================================================================
+   RENDER — WELCOME
+   ================================================================== */
+
+function renderWelcome() {
+  progressFill.style.width = '0%';
+  counterEl.textContent = '';
+
+  stage.innerHTML = `
+    <div class="card welcome-card">
+      <span class="welcome-emoji">👋</span>
+      <h1 class="welcome-title">Hola, qué bueno verte por aquí</h1>
+      <p class="welcome-text">
+        Somos un estudio creativo y digital. Para darte la mejor propuesta,
+        queremos conocerte un poco antes de hablar de precios o plazos.
+      </p>
+      <ul class="welcome-list">
+        <li>Tómate tu tiempo, no hay respuestas correctas ni incorrectas</li>
+        <li>Tus respuestas se guardan automáticamente mientras avanzas</li>
+        <li>Al final podrás enviárnoslo por WhatsApp con un toque</li>
+      </ul>
+      <div class="nav" style="justify-content: flex-end;">
+        <button class="btn primary" id="btnStart">
+          Empecemos
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('btnStart').addEventListener('click', () => {
+    state.phase = 'services';
+    saveState();
+    render();
+  });
+}
+
+/* ==================================================================
+   RENDER — SERVICIOS
+   ================================================================== */
+
+function renderServices() {
+  progressFill.style.width = '6%';
+  counterEl.textContent = 'Paso 1';
+
+  stage.innerHTML = `
+    <div class="card">
+      <div class="eyebrow"><span class="eyebrow-emoji">✨</span> Cuéntanos qué necesitas</div>
+      <h2 class="question">¿En qué podemos ayudarte?</h2>
+      <p class="help">Puedes elegir una o varias opciones.</p>
+
+      <div class="services-grid" id="servicesGrid">
+        ${SERVICE_ORDER.map(id => {
+          const s = SERVICES[id];
+          const sel = state.services.includes(id);
+          return `
+            <button class="service-card ${sel ? 'selected' : ''}" data-id="${id}" type="button">
+              <span class="s-icon">${s.icon}</span>
+              <span class="s-body">
+                <span class="s-name">${esc(s.name)}</span>
+                <span class="s-desc">${esc(s.description)}</span>
+              </span>
+              <span class="check">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+            </button>
+          `;
+        }).join('')}
+      </div>
+
+      <div class="error" id="error"></div>
+
+      <div class="nav">
+        <button class="btn ghost" id="btnBack">← Atrás</button>
+        <button class="btn primary" id="btnNext">Continuar</button>
+      </div>
+    </div>
+  `;
+
+  stage.querySelectorAll('.service-card').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      if (state.services.includes(id)) {
+        state.services = state.services.filter(s => s !== id);
+        btn.classList.remove('selected');
+      } else {
+        state.services.push(id);
+        btn.classList.add('selected');
+      }
+      saveState();
+      const err = document.getElementById('error');
+      if (err) err.textContent = '';
+    });
+  });
+
+  document.getElementById('btnBack').addEventListener('click', () => {
+    state.phase = 'welcome';
+    saveState();
+    render();
+  });
+
+  document.getElementById('btnNext').addEventListener('click', () => {
+    if (state.services.length === 0) {
+      document.getElementById('error').textContent = 'Elige al menos una opción 🙂';
+      return;
+    }
+    // Reordenar según SERVICE_ORDER
+    state.services = SERVICE_ORDER.filter(s => state.services.includes(s));
+    state.questionList = buildQuestionList();
+    state.currentQ = 0;
+    state.phase = 'questions';
+    saveState();
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+/* ==================================================================
+   RENDER — PREGUNTA
+   ================================================================== */
+
+function fieldHTML(q) {
+  const val = state.answers[q.id];
+  const ph = esc(q.placeholder || '');
+
+  switch (q.type) {
+    case 'text':
+      return `<input class="inp" id="inp" type="text" value="${esc(val || '')}" placeholder="${ph}" autocomplete="off">`;
+    case 'textarea':
+      return `<textarea class="inp" id="inp" rows="3" placeholder="${ph}">${esc(val || '')}</textarea>`;
+    case 'select':
+      return `<select class="inp" id="inp">
+        <option value="">— Selecciona una opción —</option>
+        ${q.options.map(o => `<option value="${esc(o)}" ${val === o ? 'selected' : ''}>${esc(o)}</option>`).join('')}
+      </select>`;
+    case 'radio':
+      return `<div class="options" data-type="radio">
+        ${q.options.map(o => `<button type="button" class="option ${val === o ? 'selected' : ''}" data-value="${esc(o)}">${esc(o)}</button>`).join('')}
+      </div>`;
+    case 'checkbox': {
+      const arr = Array.isArray(val) ? val : [];
+      return `<div class="options" data-type="checkbox">
+        ${q.options.map(o => `<button type="button" class="option ${arr.includes(o) ? 'selected' : ''}" data-value="${esc(o)}">${esc(o)}</button>`).join('')}
+      </div>`;
+    }
+  }
+  return '';
+}
+
+function renderQuestion() {
+  const vis = visibleQuestions();
+  const q = state.questionList[state.currentQ];
+
+  // Si la pregunta actual no es visible, saltar a la siguiente visible
+  if (!q || !isVisible(q)) {
+    const nextVisible = state.questionList.findIndex((qq, i) => i >= state.currentQ && isVisible(qq));
+    if (nextVisible === -1) { goSummary(); return; }
+    state.currentQ = nextVisible;
+    renderQuestion();
+    return;
+  }
+
+  const pos = vis.indexOf(q) + 1;
+  const total = vis.length;
+  const pct = 8 + (pos / total) * 88;
+  progressFill.style.width = `${pct}%`;
+  counterEl.textContent = `${pos} de ${total}`;
+
+  const isFirst = state.questionList.indexOf(q) === 0;
+  const isLast = !state.questionList.slice(state.currentQ + 1).some(isVisible);
+
+  // Mostrar eyebrow solo si cambia de sección (o si es la primera)
+  const prevQ = state.currentQ > 0 ? state.questionList[state.currentQ - 1] : null;
+  const showSection = !prevQ || prevQ.section !== q.section;
+
+  stage.innerHTML = `
+    <div class="card">
+      ${showSection ? `<div class="eyebrow"><span class="eyebrow-emoji">${q._icon || '•'}</span> ${esc(q.section)}</div>` : ''}
+      <h2 class="question">${esc(q.question)}${!q.required ? '<span class="optional-badge">opcional</span>' : ''}</h2>
+      ${q.help ? `<p class="help">${esc(q.help)}</p>` : ''}
+      <div class="field">${fieldHTML(q)}</div>
+      <div class="error" id="error"></div>
+      <div class="nav">
+        <button class="btn ghost" id="btnPrev">← Atrás</button>
+        <button class="btn primary" id="btnNext">${isLast ? 'Ver resumen ✨' : 'Siguiente →'}</button>
+      </div>
+    </div>
+  `;
+
+  bindQuestion(q);
+  saveState();
+
+  // Foco automático
+  if (q.type === 'text' || q.type === 'textarea') {
+    const inp = document.getElementById('inp');
+    if (inp && q.autofocus) setTimeout(() => inp.focus(), 80);
+  }
+}
+
+function bindQuestion(q) {
+  const inp = document.getElementById('inp');
+
+  if (inp) {
+    const handler = () => { state.answers[q.id] = inp.value; saveState(); };
+    inp.addEventListener('input', handler);
+    inp.addEventListener('change', handler);
+    if (q.type === 'text') {
+      inp.addEventListener('keydown', e => {
+        if (e.key === 'Enter') { e.preventDefault(); goNext(); }
+      });
+    }
+  }
+
+  stage.querySelectorAll('.options .option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const wrap = btn.parentElement;
+      const value = btn.dataset.value;
+
+      if (wrap.dataset.type === 'radio') {
+        wrap.querySelectorAll('.option').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        state.answers[q.id] = value;
+      } else {
+        btn.classList.toggle('selected');
+        let arr = Array.isArray(state.answers[q.id]) ? state.answers[q.id].slice() : [];
+        if (btn.classList.contains('selected')) {
+          if (!arr.includes(value)) arr.push(value);
+        } else {
+          arr = arr.filter(v => v !== value);
+        }
+        state.answers[q.id] = arr;
+      }
+      saveState();
+    });
+  });
+
+  document.getElementById('btnPrev').addEventListener('click', goPrev);
+  document.getElementById('btnNext').addEventListener('click', goNext);
+}
+
+/* ==================================================================
+   NAVEGACIÓN
+   ================================================================== */
+
+function goNext() {
+  const q = state.questionList[state.currentQ];
+  const val = state.answers[q.id];
+
+  if (q.required && isEmpty(val)) {
+    const err = document.getElementById('error');
+    if (err) err.textContent = 'Solo falta este dato para continuar 🙂';
+    return;
+  }
+
+  // Buscar siguiente visible
+  for (let i = state.currentQ + 1; i < state.questionList.length; i++) {
+    if (isVisible(state.questionList[i])) {
+      state.currentQ = i;
+      saveState();
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+  }
+  goSummary();
+}
+
+function goPrev() {
+  if (state.currentQ === 0) {
+    state.phase = 'services';
+    saveState();
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+  for (let i = state.currentQ - 1; i >= 0; i--) {
+    if (isVisible(state.questionList[i])) {
+      state.currentQ = i;
+      saveState();
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+  }
+}
+
+function goSummary() {
+  state.phase = 'summary';
+  saveState();
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ==================================================================
+   RENDER — RESUMEN
+   ================================================================== */
+
+function buildText() {
+  const lines = [];
+  const today = new Date().toLocaleDateString('es-CO', { day:'2-digit', month:'long', year:'numeric' });
+
+  const name = state.answers['contact__name'] || '';
+  const serviceNames = state.services.map(s => SERVICES[s].name).join(' · ');
+
+  lines.push(`✨ *NUEVO PROYECTO — ${serviceNames}*`);
+  lines.push(`📅 ${today}`);
+
+  // Agrupar por sección
+  let lastSection = '';
+  state.questionList.forEach(q => {
+    if (!isVisible(q)) return;
+    const val = state.answers[q.id];
+    if (isEmpty(val)) return;
+
+    if (q.section !== lastSection) {
+      const icon = q._icon || '•';
+      lines.push('');
+      lines.push(`${icon} *${q.section.toUpperCase()}*`);
+      lastSection = q.section;
+    }
+
+    const value = Array.isArray(val) ? val.join(' · ') : val;
+    lines.push(`• *${q.label}:* ${value}`);
+  });
+
+  lines.push('');
+  lines.push('_Enviado desde el formulario de contacto._');
+
+  return { text: lines.join('\n'), name };
+}
+
+function renderSummary() {
+  progressFill.style.width = '100%';
+  counterEl.textContent = 'Listo';
+
+  const { text, name } = buildText();
+  const firstName = name.split(' ')[0] || '';
+
+  stage.innerHTML = `
+    <div class="card">
+      <div class="eyebrow"><span class="eyebrow-emoji">💚</span> Todo listo</div>
+      <h2 class="thanks-title">¡Gracias${firstName ? ', ' + esc(firstName) : ''}! ✨</h2>
+      <p class="thanks-sub">Aquí tienes el resumen de lo que nos contaste. Puedes revisarlo, copiarlo o enviárnoslo por WhatsApp.</p>
+
+      <pre class="output" id="output">${esc(text)}</pre>
+
+      <div class="actions">
+        <button class="btn whatsapp" id="btnWa">
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
+          Enviar por WhatsApp
+        </button>
+        <button class="btn" id="btnCopy">📋 Copiar</button>
+        <button class="btn" id="btnTxt">⬇️ Descargar</button>
+      </div>
+
+      <div class="nav" style="margin-top: 20px;">
+        <button class="btn ghost" id="btnEdit">← Editar</button>
+        <button class="btn ghost danger" id="btnReset">Reiniciar</button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('btnWa').addEventListener('click', () => {
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+  });
+
+  document.getElementById('btnCopy').addEventListener('click', async (e) => {
+    await copyText(text);
+    const b = e.currentTarget;
+    const orig = b.innerHTML;
+    b.innerHTML = '✅ Copiado';
+    setTimeout(() => { b.innerHTML = orig; }, 1800);
+  });
+
+  document.getElementById('btnTxt').addEventListener('click', () => {
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'mi-proyecto.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(a.href);
+  });
+
+  document.getElementById('btnEdit').addEventListener('click', () => {
+    // Volver a la última pregunta visible
+    for (let i = state.questionList.length - 1; i >= 0; i--) {
+      if (isVisible(state.questionList[i])) { state.currentQ = i; break; }
+    }
+    state.phase = 'questions';
+    saveState();
+    render();
+  });
+
+  document.getElementById('btnReset').addEventListener('click', () => {
+    if (!confirm('¿Seguro que quieres borrar todo y empezar de nuevo?')) return;
+    state.services = [];
+    state.answers = {};
+    state.currentQ = 0;
+    state.questionList = [];
+    state.phase = 'welcome';
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    render();
+  });
+}
+
+/* ==================================================================
+   COPIAR
+   ================================================================== */
+
+async function copyText(text) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+  } catch (e) {}
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  ta.style.position = 'fixed';
+  ta.style.top = '-2000px';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+/* ==================================================================
+   ROUTER / ARRANQUE
+   ================================================================== */
+
+function render() {
+  if (state.phase === 'welcome') return renderWelcome();
+  if (state.phase === 'services') return renderServices();
+  if (state.phase === 'summary') return renderSummary();
+  // questions
+  if (!state.questionList.length) {
+    state.questionList = buildQuestionList();
+  }
+  return renderQuestion();
+}
+
+themeToggle.addEventListener('click', toggleTheme);
+
+// Inicializar
+loadState();
+applyTheme();
+// Verificación de coherencia
+if (state.phase === 'questions' && state.services.length === 0) state.phase = 'welcome';
+render();
+</script>
+</body>
+</html>
